@@ -1,0 +1,30 @@
+/* background image to span entire page*/
+body { 
+    background: url("../images/8bitbackground.jpg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+
+.logo{
+    font-family: 'Press Start 2P', cursive;
+    font-size:1.5rem;
+    text-align: center;
+    margin-top: 20px;
+   /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
+    background: -webkit-linear-gradient(#FE0002,  #FFF512);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+}
+
+#directions{
+    margin:auto;
+    margin-top:20px;
+}
+
+#direction-list{
+    text-align:left;
+}
