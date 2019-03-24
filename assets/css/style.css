@@ -28,3 +28,68 @@ body {
 #direction-list{
     text-align:left;
 }
+
+.nes-field{
+    width:50%;
+    margin:auto;
+    margin-bottom:20px;
+}
+
+input#name_field{
+    background-color: transparent;
+    text-align:center;
+}
+
+.hand{
+    height:5rem;
+    margin:auto;
+    position: absolute;
+
+}
+
+
+#player1-choice{
+    height:5rem;
+    width:9.625rem;
+    margin: auto;
+    margin-bottom: 20px;
+    
+}
+
+#player2-choice{
+    height:5rem;
+    width:9.625rem;
+    margin:auto;
+    transform: rotate(180deg);
+    margin-bottom: 20px;
+}
+
+.player-title{
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+}
+
+.button-container{
+    margin-top:50px;
+    align-content:center;
+}
+
+.button-row{
+    justify-content: center;
+}
+
+.action-text{
+    display: block;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    margin-bottom: 20px;
+    
+}
+
+.nes-btn{
+    margin-right:20px;
+}
+
+
+
+

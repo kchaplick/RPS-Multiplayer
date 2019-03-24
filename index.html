@@ -17,20 +17,90 @@
    </header> 
 
    <div class="container">
+       <!--Directions container-->
        <div class = "row">
         <div class="nes-container with-title is-centered" id="directions">
             <p class="title">Directions</p>
             <div class="lists">
                 <ul class="nes-list is-circle" id="direction-list">
-                  <li>Good morning.</li>
-                  <li>Thou hast had a good night's sleep, I hope.</li>
-                  <li>Thou hast had a good afternoon</li>
-                  <li>Good night.</li>
+                  <li>Use the buttons below to select Rock, Paper, or Scissors.</li>
+                  <li>Once both players select their move, the choices will be displayed</li>
+                  <li>Rock beats Scissors</li>
+                  <li>Scissors beats Paper</li>
+                  <li>Paper beats Rock</li>
+                  <li>If both players pick the same move, it's a tie</li>
+                  <li>First player to win 5 challenges, wins the game</li>
                 </ul>
+                <div class="nes-field">
+                        <label for="name_field">Player Name</label>
+                        <input type="text" id="name_field" class="nes-input">
+                      </div>
+                <button type="submit" id="name-submit" class="nes-btn is-error">Click to Play</button>
+
               </div>
           </div>
+          <!--Waiting container-->
+       <div id="waiting-screen" class="nes-container with-title is-centered">
+            <p>There are already 2 players in this challenge. You will be notified when a game space is open! Here are some fun RPS facts!</p>
+            <ul class="nes-list is-circle" id="direction-list">
+
+                    <li>The first form of RPS was seen in 18th century Japan, called Jan-ken-pon</li>
+                    <li>The World Rock Paper Scissors Society sanctions yearly world championships</li>
+                    <li>The game is also called Roshambo.</li>
+                    <li>In 2006, a Federal Court Judge in Florida ordered that a trivial point over location for a deposition be settled by a playoff of rock-paper-scissors</li>
+                    
+                  </ul>
+          </div>
        </div>
-   </div>
+
+       
+
+       <!--Hands Container-->
+       <div class="row">
+           
+           <div class="col-6 player-choice" >
+                <p class="player-title">Player 1</p>
+                <div id="player1-choice">
+                
+               <img class="hand" id="player1-paper" src="assets/images/images/hand_paper.png">
+               <img class="hand" id="player1-rock" src="assets/images/images/hand_rock.png">
+               <img class="hand" id="player1-scissors" src="assets/images/images/hand_scissors.png">
+               </div>
+               <p class="player-title">Wins</p>
+               <div class="win-count"></div>
+           </div>
+           <div class="col-6 player-choice">
+                <p class="player-title">Player 2</p>
+                <div id="player2-choice">
+                
+                <img class="hand" id="player2-paper" src="assets/images/images/hand_paper.png">
+                <img class="hand" id="player2-rock" src="assets/images/images/hand_rock.png">
+                <img class="hand" id="player2-scissors" src="assets/images/images/hand_scissors.png">
+                </div>
+                <p class="player-title">Wins</p>
+                <div class="win-count"></div>
+            </div>
+        
+        
+        <!--Buttons-->
+        <div class="col-12 button-container">
+            <div class="row button-row">
+            <h5 class="action-text">Make Your Move <span class="playerNumber"></span></h5>
+             </div>
+             <div class="row button-row">
+                <button type="button" class="nes-btn is-warning move-button" data-action="rock">&nbsp;&nbsp;Rock&nbsp;&nbsp;</button>
+                <button type="button" class="nes-btn is-warning move-button"data-action="paper">&nbsp;&nbsp;Paper &nbsp;</button>
+                <button type="button" class="nes-btn is-warning move-button" data-action="scissors">Scissors</button>
+            </div> 
+                
+
+        </div>
+
+    </div>
+    
+    <!--End Main Container-->
+    </div>
+   
 
 
 
