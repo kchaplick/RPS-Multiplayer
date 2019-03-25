@@ -30,8 +30,8 @@ var playerTwo = null;
 var playerOneName = "";
 var playerTwoName = "";
 var waitingPlayers = [];
-var playerOneChoice = "";
-var playerTwoChoice = "";
+var playerOneChoice = null;
+var playerTwoChoice = null;
 var turn = 1;
 
 //Get the number of connected users
@@ -177,12 +177,65 @@ $("#name-submit").on("click", function(event) {
     //database.ref().child("/players/playerTwo").set(playerTwo);
     console.log(playerChoice)
    
+    //if statement to check for both choice values
+
+    database.ref("/players/playerOne").on("value",function(childSnapshot){
+      if(childSnapshot.child("choice").val() !== ""){
+        playerOneChoice = childSnapshot.val().choice;
+     console.log("Player one choice is " + playerOneChoice);
+      }
+    })
+
+    database.ref("/players/playerTwo").on("value",function(childSnapshot){
+        if(childSnapshot.child("choice").val() !== ""){
+          playerTwoChoice = childSnapshot.val().choice;
+       console.log("Player two choice is " + playerTwoChoice);
+        }
+      })
+
+    //show waiting text if player has not made a choice
+        if (playerTwoChoice == null ){
+          $(".action-text").empty()
+          $(".action-text").text("Waiting on Player 2")
+        }else if(playerOneChoice == null ){
+          $(".action-text").empty()
+          $(".action-text").text("Waiting on Player 1")
+        }
+      //if both choices are there 
+      if (playerOneChoice && playerTwoChoice !== null ){
+
+        //if playerone choice is rock show rock image
+        if (playerOneChoice = "rock"){
+          $("#thumbs-up").hide();
+          $("#player1-rock").show();
+        }
+        //if playerone choice is paper show paper image
+        //if playerone choice is scissors show scissors image
+
+        //if playertwo choice is rock show rock image
+        //if playertwo choice is paper show paper image
+        //if playertwo choice is scissors show scissors image
+
+        //if playerone choice = to player two tie
+
+        //if player one chose rock
+          //if player two chose paper
+          //if player two chose scissors
+        
+          //if player one chose paper
+          //if player two chose rock
+          //if player two chose scissors
+
+        //if player one chose scissors
+          //if player two chose paper
+          //if player two chose rock 
+        }
+
+      
+
+    // 
+
+
+
+
   })  
-
-
-
-
-
-  //if statement to show if another user is playing
-  //if connections = 2 return
-  //else show 
