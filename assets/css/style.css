@@ -43,7 +43,11 @@ input#name_field{
 #waiting-screen{
     margin-top: 30px;
 }
-
+#gameOutcomeContainer{
+    width:50%;
+    margin:auto;
+    text-align: center;
+}
 #player-moves{
     margin-top: 50px;
 }
@@ -55,14 +59,21 @@ input#name_field{
 
 }
 
-#thumbs-up{
+#thumbs-up1{
     height:5rem;
     margin:auto;
     position: absolute;
     
 }
 
-#player2-choice #thumbs-up{
+#thumbs-up2{
+    height:5rem;
+    margin:auto;
+    position: absolute;
+    
+}
+
+#player2-choice #thumbs-up2{
     transform: rotate(180deg);
 }
 

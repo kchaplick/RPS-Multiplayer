@@ -2,6 +2,8 @@ $( document ).ready(function() {
 //on load hide all elements except the directions
   $("#waiting-screen").hide();
   $("#player-moves").hide()
+  $("#gameOutcomeContainer ").hide()
+  
   });
  //====================================================
 
@@ -111,9 +113,10 @@ $("#name-submit").on("click", function(event) {
 
 		// Set the turn player 1
     database.ref().child("/turn").set(1);
-    
+    database.ref("/choicesmade").onDisconnect().remove();
     //remove player id they leave
     database.ref("/players/playerOne").onDisconnect().remove();
+    
 
 //add player 2 two attributes
   } else if( (playerOne !== null) && (playerTwo === null) ) {
@@ -132,6 +135,8 @@ $("#name-submit").on("click", function(event) {
 
     // remove play if they leave
     database.ref("/players/playerTwo").onDisconnect().remove();
+   
+    
   
     //hide directions
     $("#directions").hide();
@@ -196,46 +201,137 @@ $("#name-submit").on("click", function(event) {
     //show waiting text if player has not made a choice
         if (playerTwoChoice == null ){
           $(".action-text").empty()
+         
           $(".action-text").text("Waiting on Player 2")
         }else if(playerOneChoice == null ){
           $(".action-text").empty()
           $(".action-text").text("Waiting on Player 1")
         }
-      //if both choices are there 
-      if (playerOneChoice && playerTwoChoice !== null ){
 
-        //if playerone choice is rock show rock image
-        if (playerOneChoice = "rock"){
-          $("#thumbs-up").hide();
-          $("#player1-rock").show();
-        }
-        //if playerone choice is paper show paper image
-        //if playerone choice is scissors show scissors image
+   if ((playerOneChoice !== null && playerTwoChoice !== null)){
+     console.log("choice before choiceset for player one: " +playerOneChoice);
+     console.log("choice before choiceset for player two: " +playerTwoChoice);
+    database.ref().child("/choicesmade").set(true);
 
-        //if playertwo choice is rock show rock image
-        //if playertwo choice is paper show paper image
-        //if playertwo choice is scissors show scissors image
+   }
 
-        //if playerone choice = to player two tie
-
-        //if player one chose rock
-          //if player two chose paper
-          //if player two chose scissors
-        
-          //if player one chose paper
-          //if player two chose rock
-          //if player two chose scissors
-
-        //if player one chose scissors
-          //if player two chose paper
-          //if player two chose rock 
-        }
 
       
+});
 
-    // 
+//==================================================== 
+function gameReset() {
+  database.ref().child("/choicesmade").remove();
+  database.ref().child("/players/playerOne/choice").set("");
+  database.ref().child("/players/playerTwo/choice").set("");
+  playerOneChoice = null;
+  playerTwoChoice = null;
+  $("#gameOutcomeContainer").hide();
+  $(".hand").hide();
+  $("#thumbs-up1").show();
+  $("#thumbs-up2").show();
+  var playerDisplay = $("<span class='player-display'>" + playerName + "</span>")
+  $(".action-text").html("Make Your Move ")
+  $(".action-text").append(playerDisplay)
+  
+}
+
+//====================================================  
+database.ref("/choicesmade").on("value",function(snapshot){
+  if(snapshot.val() == true){
+
+  //if playerone choice is rock show rock image
+  if (playerOneChoice == "rock"){
+    $("#thumbs-up1").hide();
+    $("#player1-rock").show();
+  }else if(playerOneChoice == "paper"){
+    $("#thumbs-up1").hide();
+    $("#player1-paper").show();
+  }else if(playerOneChoice == "scissors"){
+    $("#thumbs-up1").hide();
+    $("#player1-scissors").show();
+  }
 
 
 
 
-  })  
+  //if playertwo choice is rock show rock image
+  if (playerTwoChoice == "rock"){
+    $("#thumbs-up2").hide();
+    $("#player2-rock").show();
+  }else if(playerTwoChoice == "paper"){
+    $("#thumbs-up2").hide();
+    $("#player2-paper").show();
+  }else if(playerTwoChoice == "scissors"){
+    $("#thumbs-up2").hide();
+    $("#player2-scissors").show();
+  }
+
+  //if playerone choice = to player two tie
+  if (playerOneChoice == playerTwoChoice){
+    //$("#player-moves").hide()
+    $(".gameOutcome").text("It's a tie!");
+    $("#gameOutcomeContainer ").show();
+
+  }
+  //if player one chose rock
+  if (playerOneChoice == "rock"){
+
+  
+    //if player two chose paper
+    if(playerTwoChoice == "paper"){
+    //  $("#player-moves").hide()
+    $(".gameOutcome").text("Player Two Wins!");
+    $("#gameOutcomeContainer ").show();
+    }
+    //if player two chose scissors
+    if(playerTwoChoice == "scissors"){
+    //  $("#player-moves").hide()
+    $(".gameOutcome").text("Player One Wins!");
+    $("#gameOutcomeContainer ").show();
+    }
+    }
+  
+    //if player one chose paper
+    if (playerOneChoice == "paper"){
+
+  
+      //if player two chose rock
+      if(playerTwoChoice == "rock"){
+       // $("#player-moves").hide()
+      $(".gameOutcome").text("Player One Wins!");
+      $("#gameOutcomeContainer ").show();
+      }
+      //if player two chose scissors
+      if(playerTwoChoice == "scissors"){
+       // $("#player-moves").hide()
+      $(".gameOutcome").text("Player Two Wins!");
+      $("#gameOutcomeContainer ").show();
+      }
+      }
+   
+
+  //if player one chose scissors
+  if (playerOneChoice == "scissors"){
+
+  
+    //if player two chose paper
+    if(playerTwoChoice == "paper"){
+     // $("#player-moves").hide()
+    $(".gameOutcome").text("Player One Wins!");
+    $("#gameOutcomeContainer ").show();
+    }
+    //if player two chose rock
+    if(playerTwoChoice == "rock"){
+     // $("#player-moves").hide()
+    $(".gameOutcome").text("Player Two Wins!");
+    $("#gameOutcomeContainer ").show();
+    }
+    }
+  }
+});
+
+$("#game-reset").on("click",function(){
+  gameReset();
+})
+
