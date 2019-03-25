@@ -40,13 +40,31 @@ input#name_field{
     text-align:center;
 }
 
-.hand{
+#waiting-screen{
+    margin-top: 30px;
+}
+
+#player-moves{
+    margin-top: 50px;
+}
+.hand {
     height:5rem;
     margin:auto;
     position: absolute;
+    /*animation: hand 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) 6 alternate both;*/
 
 }
 
+#thumbs-up{
+    height:5rem;
+    margin:auto;
+    position: absolute;
+    
+}
+
+#player2-choice #thumbs-up{
+    transform: rotate(180deg);
+}
 
 #player1-choice{
     height:5rem;

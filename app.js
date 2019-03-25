@@ -1,3 +1,10 @@
+$( document ).ready(function() {
+//on load hide all elements except the directions
+  $("#waiting-screen").hide();
+  $("#player-moves").hide()
+  });
+ //====================================================
+
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyA_WUWgxDr3vAxbbscmfYgF8S6sAJEWyAA",
@@ -42,15 +49,6 @@ connectedRef.on("value", function(snap) {
 });
 
 //====================================================
-//on load hide all elements except the directions
-window.load(function() {
-$("#waiting-screen").hide();
-$("#player-moves").hide()
-});
-    
-
-
-//====================================================
 //check if players exist
 database.ref("/players/").on("value", function(snapshot) {
 	// Check player 1 in the database
@@ -63,7 +61,9 @@ database.ref("/players/").on("value", function(snapshot) {
       tie: 0,
       choice: ""
     }
+  
     database.ref().child("/players/playerOne").set(playerOne);
+    waitingPlayers.splice(0);
   }else{
     playerOne = null;
   }
@@ -79,6 +79,7 @@ database.ref("/players/").on("value", function(snapshot) {
       choice: ""
     }
     database.ref().child("/players/playerTwo").set(playerTwo);
+    waitingPlayers.splice(0);
   }else{
     playerTwo = null;
   }
@@ -131,29 +132,51 @@ $("#name-submit").on("click", function(event) {
 
     // remove play if they leave
     database.ref("/players/playerTwo").onDisconnect().remove();
-  });
-
-
-
-
-//onclick to load game after button click
-
-  //hide directions
-
-  //show hands
-
-  //show buttons
-
+  
+    //hide directions
+    $("#directions").hide();
+  //if player name exists in waiting array show waiting screen
+  var playerName = $("#name_field").val().trim();
+  if (waitingPlayers.indexOf(playerName)!== -1){
+  $("#waiting-screen").show();
+  } else
+  //show hands and buttons
+  $("#player-moves").show();
+  $(".hand").hide();
   //Fill in Make Your Move text with player number
- 
+    $(".player-display").html(playerName);
+
+  });   
 //====================================================  
 
-  
+
+   database.ref("/players/playerOne").on("value",function(childSnapshot){
+     if(childSnapshot.child("name").exists()){
+       playerOneName = childSnapshot.val().name;
+    console.log("Player One Name is " + playerOneName);
+     }
+    });
+
+    database.ref("/players/playerTwo").on("value",function(childSnapshot){
+      if(childSnapshot.child("name").exists()){
+        playerTwoName = childSnapshot.val().name;
+     console.log("Player two name is " + playerTwoName);
+      }
+     });
+
 //onclick for button moves
-  $("move-button").on("click", function(){
+  $(".move-button").on("click", function(){
+    if (playerOneName === $(".player-display").html()){
     playerChoice = $(this).attr("data-action");
+    database.ref("players/playerOne/choice").set(playerChoice);
+  } else if (playerTwoName === $(".player-display").html()){
+    playerChoice = $(this).attr("data-action");
+    database.ref("players/playerTwo/choice").set(playerChoice);
+
+    }
+    //database.ref().child("/players/playerTwo").set(playerTwo);
     console.log(playerChoice)
-    database.ref()
+   
   })  
 
 
