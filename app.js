@@ -205,9 +205,11 @@ $("#name-submit").on("click", function(event) {
         if (playerTwoChoice == null ){
           $(".action-text").hide()
           $(".waiting-text-2").show()
+          $(".move-button").hide();
         }else if(playerOneChoice == null ){
           $(".action-text").hide()
           $(".waiting-text-1").show()
+          $(".move-button").hide();
         }
 
    if ((playerOneChoice !== null && playerTwoChoice !== null)){
@@ -230,6 +232,7 @@ function gameReset() {
   playerTwoChoice = null;
   $("#gameOutcomeContainer").hide();
   $(".hand").hide();
+  $(".move-button").show();
   $("#thumbs-up1").show();
   $("#thumbs-up2").show();
   $(".waiting-text-1").hide();
@@ -277,6 +280,7 @@ database.ref("/choicesmade").on("value",function(snapshot){
     //$("#player-moves").hide()
     $(".gameOutcome").text("It's a tie!");
     $("#gameOutcomeContainer ").show();
+    $(".move-button").hide();
 
   }
   //if player one chose rock
@@ -288,12 +292,14 @@ database.ref("/choicesmade").on("value",function(snapshot){
     //  $("#player-moves").hide()
     $(".gameOutcome").text("Player Two Wins!");
     $("#gameOutcomeContainer ").show();
+    $(".move-button").hide();
     }
     //if player two chose scissors
     if(playerTwoChoice == "scissors"){
     //  $("#player-moves").hide()
     $(".gameOutcome").text("Player One Wins!");
     $("#gameOutcomeContainer ").show();
+    $(".move-button").hide();
     }
     }
   
@@ -306,12 +312,14 @@ database.ref("/choicesmade").on("value",function(snapshot){
        // $("#player-moves").hide()
       $(".gameOutcome").text("Player One Wins!");
       $("#gameOutcomeContainer ").show();
+      $(".move-button").hide();
       }
       //if player two chose scissors
       if(playerTwoChoice == "scissors"){
        // $("#player-moves").hide()
       $(".gameOutcome").text("Player Two Wins!");
       $("#gameOutcomeContainer ").show();
+      $(".move-button").hide();
       }
       }
    
@@ -325,12 +333,14 @@ database.ref("/choicesmade").on("value",function(snapshot){
      // $("#player-moves").hide()
     $(".gameOutcome").text("Player One Wins!");
     $("#gameOutcomeContainer ").show();
+    $(".move-button").hide();
     }
     //if player two chose rock
     if(playerTwoChoice == "rock"){
      // $("#player-moves").hide()
     $(".gameOutcome").text("Player Two Wins!");
     $("#gameOutcomeContainer ").show();
+    $(".move-button").hide();
     }
     }
   }
