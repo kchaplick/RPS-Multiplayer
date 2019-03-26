@@ -198,7 +198,7 @@ $("#name-submit").on("click", function(event) {
         }
       })
 
-    //show waiting text if player has not made a choice
+    /*//show waiting text if player has not made a choice
         if (playerTwoChoice == null ){
           $(".action-text").empty()
          
@@ -206,7 +206,7 @@ $("#name-submit").on("click", function(event) {
         }else if(playerOneChoice == null ){
           $(".action-text").empty()
           $(".action-text").text("Waiting on Player 1")
-        }
+        }*/
 
    if ((playerOneChoice !== null && playerTwoChoice !== null)){
      console.log("choice before choiceset for player one: " +playerOneChoice);
@@ -230,9 +230,9 @@ function gameReset() {
   $(".hand").hide();
   $("#thumbs-up1").show();
   $("#thumbs-up2").show();
-  var playerDisplay = $("<span class='player-display'>" + playerName + "</span>")
-  $(".action-text").html("Make Your Move ")
-  $(".action-text").append(playerDisplay)
+  /*var playerDisplay = $("<span class='player-display'>" + playerName + "</span>")
+  $(".action-text").text("Make Your Move ")
+  $(".action-text").append(playerDisplay)*/
   
 }
 
