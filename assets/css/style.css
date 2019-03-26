@@ -114,6 +114,20 @@ input#name_field{
     margin-bottom: 20px;
     
 }
+.waiting-text-1{
+    display: block;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    margin-bottom: 20px;
+    
+}
+.waiting-text-2{
+    display: block;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    margin-bottom: 20px;
+    
+}
 
 .nes-btn{
     margin-right:20px;

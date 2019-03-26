@@ -148,6 +148,9 @@ $("#name-submit").on("click", function(event) {
   //show hands and buttons
   $("#player-moves").show();
   $(".hand").hide();
+  $(".waiting-text-1").hide();
+  $(".waiting-text-2").hide();
+
   //Fill in Make Your Move text with player number
     $(".player-display").html(playerName);
 
@@ -198,15 +201,14 @@ $("#name-submit").on("click", function(event) {
         }
       })
 
-    /*//show waiting text if player has not made a choice
+    //show waiting text if player has not made a choice
         if (playerTwoChoice == null ){
-          $(".action-text").empty()
-         
-          $(".action-text").text("Waiting on Player 2")
+          $(".action-text").hide()
+          $(".waiting-text-2").show()
         }else if(playerOneChoice == null ){
-          $(".action-text").empty()
-          $(".action-text").text("Waiting on Player 1")
-        }*/
+          $(".action-text").hide()
+          $(".waiting-text-1").show()
+        }
 
    if ((playerOneChoice !== null && playerTwoChoice !== null)){
      console.log("choice before choiceset for player one: " +playerOneChoice);
@@ -230,6 +232,9 @@ function gameReset() {
   $(".hand").hide();
   $("#thumbs-up1").show();
   $("#thumbs-up2").show();
+  $(".waiting-text-1").hide();
+  $(".waiting-text-2").hide();
+  $(".action-text").show();
   /*var playerDisplay = $("<span class='player-display'>" + playerName + "</span>")
   $(".action-text").text("Make Your Move ")
   $(".action-text").append(playerDisplay)*/
